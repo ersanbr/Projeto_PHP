@@ -10,7 +10,7 @@
 	require_once "../config.php";
 ?>
 <!DOCTYPE html>
-<html lang="UTF-8">
+<html lang="UTF-8" ng-app="Projeto">
 <head>
 
 	<!-- META -->
@@ -39,15 +39,18 @@
 	<link rel="stylesheet" type="text/css" href="../css/painel.css" />
 
 	<!-- JS -->
+	<script	src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script	src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/painel.js"></script>
+	<script src="../js/rotasPainel.js"></script>
 
 	<!-- FAVICON -->
 	<link rel="shortcut icon" href="../images/favicon.ico" />
 
 </head>
-<body style="padding-bottom: 40px;">
+<body style="padding-bottom: 40px;" ng-controller="mainController">
 
 	<div class="pg-painel">
 		<div class="menu" tabindex="0">
@@ -59,16 +62,16 @@
 			<ul class="panel-group" id="accordion">
 				<li class="fa fa-home active"><a href="#home"><span>Painel de Controle</span></a></li>
 				<!-- USUARIO -->
-				<li class="fa fa-user"><a href="#listaUsuario" id="listaUsuario"><span>Usuários</span></a></li>
+				<li class="fa fa-user"><a href="#listaUsuarios"><span>Usuários</span></a></li>
 				
 				<!-- CATEGORIA -->
-				<li class="fa fa-pencil-square"><a href="#listaCategoria" id="listaCategoria"><span>Categorias</span></a></li>
+				<li class="fa fa-pencil-square"><a href="#listaCategorias"><span>Categorias</span></a></li>
 				
 				<!-- CURSOS -->
-				<li class="fa fa-bank"><a href="#listaCursos" id="listaCursos"><span>Cursos</span></a></li>
+				<li class="fa fa-bank"><a href="#listaCursos"><span>Cursos</span></a></li>
 				
 				<!-- CONTATOS RECEBIDOS -->
-				<li class="fa fa-envelope"><a href="#listaContatos" id="listaContatos"><span>Contatos Recebidos</span></a></li>
+				<li class="fa fa-envelope"><a href="#listaContatos"><span>Contatos Recebidos</span></a></li>
 
 				<!-- SAIR -->
 				<li class="fa fa-times"><a href="login.php?logout""><span>Sair</span></a></li>          
@@ -94,13 +97,10 @@
 						</div>
 						
 					</div>
-					<div class="row">
-						<div class="col-md-6" id="responsecontainer" style="padding: 60px 40px;">
-							
-						</div>
-						
+					<div class="col-md-12" style="padding: 60px 40px;" id="main">
+						<div ng-view></div>
 					</div>
-
+				</div>
 			</div>
 		</section>
 
@@ -110,9 +110,6 @@
 			</ul>
 		</footer>
 	</div>
-
-	<script src="../js/jquery.min.js"></script>
-	<script src="../js/painelExecuta.js"></script>
 
 </body>
 </html>

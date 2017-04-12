@@ -37,8 +37,20 @@ if(isset($_POST['grava'])){
 		</script>";
 	}
 }
-?>
-<?php 
+if(isset($_GET['excluir'])){
+	$id=$_GET['id'];
+	echo "Deseja realmente excluir?";
+	echo "<br/><a href=\"index.php?excluirvdd&id=".$id."\">Sim</a> <a href=\"index.php\">Não</a>";
+}
+if(isset($_GET['excluirvdd'])){
+	$id=$_GET['id'];
+	$excluir=$conn->prepare('DELETE FROM `cadastro` WHERE `cadastro`.`id_cad` = :pid');
+	$excluir->bindValue(':pid',$id);
+	$excluir->execute();
+	echo "Excluído com Sucesso";
+}
+?>	
+<?php
 $exib=$conn->prepare('SELECT * FROM categoria');
 	$exib->execute();
 	if($exib->rowCount()==0){
