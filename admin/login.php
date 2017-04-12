@@ -65,7 +65,7 @@ if(isset($_POST['entrar'])){
     $row=$ver_login->fetch();
     $_SESSION['id']=$row['idusuario'];
     $_SESSION['nome']=$row['nome'];
-    header('location:painel.php');
+    header('location:index.php#/home');
   }
 }
 ?>
