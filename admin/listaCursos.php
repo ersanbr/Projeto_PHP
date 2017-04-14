@@ -10,7 +10,7 @@
 	require_once "../config.php";
 ?>
 
-<form action="cadastraCurso.php" method="post">
+<form action="cadastraCurso.php" method="post" enctype="multipart/form-data">
 	<div class="form-group row">
  		<label for="example-text-input" class="col-2 col-form-label">Nome Curso</label>
 		<div class="col-10">
@@ -18,7 +18,7 @@
 		</div>
   		<label for="example-text-input" class="col-2 col-form-label">Descrição Curso</label>
 		<div class="col-10">
-			<textarea class="form-control" id="descricaoCurso" nome="descricaoCurso" rows="3"></textarea>
+			<textarea class="form-control" name="descricaoCurso" rows="3"></textarea>
 		</div>
 		<div class="form-group">
 	    	<label for="exampleSelect1">Categoria: </label>
@@ -28,7 +28,7 @@
 				if($exib->rowCount()==0){
 					echo "Não há registros";
 				}else{
-					echo "<select class=\"form-control\" id=\"slctCategoria\">";
+					echo "<select class=\"form-control\" name=\"slctCategoria\" id=\"slctCategoria\">";
 					while($row=$exib->fetch()){
 					    echo "<option value=\"".$row['idcategoria']."\">".$row['descricao']."</option>";
 					  }
@@ -38,13 +38,14 @@
 	  	</div>
 	  	<div class="form-group">
 		    <label for="exampleInputFile">Imagem</label>
-		    <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+		    <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" name="imagemCurso">
 		</div>
 	</div>
 	
 	<input class="btn btn-primary" type="submit" value="Gravar" name="grava"/>
 </form>
 </br>
+
 <?php
 $exib=$conn->prepare('SELECT cur.idcurso,cur.nomecurso,cur.descricaocurso,cat.descricao,cur.imagemcurso FROM curso cur LEFT JOIN categoria cat ON cur.categoriaid=cat.idcategoria');
 	$exib->execute();
@@ -59,7 +60,6 @@ $exib=$conn->prepare('SELECT cur.idcurso,cur.nomecurso,cur.descricaocurso,cat.de
 					<th id=\"descricaocurso\">Descrição do Curso</th>
 					<th id=\"categoria\">Categoria</th>
 					<th id=\"imagem\">Imagem</th>
-					<th id=\"Alterar\">Alterar</th>
 					<th id=\"Excluir\">Excluir</th>
 				</tr>
 			</thead>";
@@ -71,8 +71,7 @@ $exib=$conn->prepare('SELECT cur.idcurso,cur.nomecurso,cur.descricaocurso,cat.de
 				echo "<td>".$row['descricaocurso']."</td>";
 				echo "<td>".$row['descricao']."</td>";
 				echo "<td>".$row['imagemcurso']."</td>";
-				echo "<td><a href=\"index.php?alterar&id=".$row['idcurso']."\">Alterar</a></td>";
-				echo "<td><a href=\"index.php?excluir&id=".$row['idcurso']."\">Excluir</a></td>";
+				echo "<td><a href=\"cadastraCurso.php?excluir&id=".$row['idcurso']."\">Excluir</a></td>";
 			echo "</tbody>
 				</tr>";
 		}

@@ -10,13 +10,11 @@ ProjetoApp.config(function($routeProvider) {
 		templateUrl : 'home.html',
 		controller : 'mainController'
 	})
-
 	// route for the cliente page
 	.when('/listaUsuarios', {
 		templateUrl : 'listaUsuarios.php',
 		controller : 'UsuarioController'
 	})
-
 	// route for the plano page
 	.when('/listaCategorias', {
 		templateUrl : 'listaCategorias.php',
@@ -35,7 +33,6 @@ ProjetoApp.config(function($routeProvider) {
 ProjetoApp.controller('mainController', function($scope) {
 	// create a message to display in our view
 	$scope.message = 'Painel Inicial';
-
 });
 ProjetoApp.controller('UsuarioController', function($scope, $http) {
 	$.ajax({    //create an ajax request to load_page.php
@@ -45,7 +42,7 @@ ProjetoApp.controller('UsuarioController', function($scope, $http) {
             success: function(response){                    
                 $("#responsecontainer").html(response); 
             }
-        });
+    });
 });
 ProjetoApp.controller('CategoriaController', function($scope, $http) {
 	$.ajax({    //create an ajax request to load_page.php

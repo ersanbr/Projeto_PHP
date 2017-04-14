@@ -31,29 +31,6 @@
 </br>
 
 <?php
-if(isset($_POST['grava'])){
-	$login=$_POST['login'];
-	$nome=$_POST['nome'];
-	$senha=sha1($_POST['senha']);
-	//Preparar o SQL
-	$prep_grava=$conn->prepare('INSERT INTO `usuario` 
-	(`login`,`nome`,`senha`) VALUES 
-	(:plogin,:pnome,:psenha);');
-	$prep_grava->bindValue(':plogin',$login);
-	$prep_grava->bindValue(':pnome',$nome);
-	$prep_grava->bindValue(':psenha',$senha);
-	$prep_grava->execute();
-	if ($prep_grava){
-		echo "<script>alert('Cadastro de Categoria Realizado!');document.location='../admin/painel.php'</script>";
-	}
-	else{
-		echo "<script>alert('Erro no cadastro!')</script>";
-	}
-	
-}
-?>
-<?php
-
 $exib=$conn->prepare('SELECT * FROM usuario');
 	$exib->execute();
 	if($exib->rowCount()==0){
@@ -65,8 +42,6 @@ $exib=$conn->prepare('SELECT * FROM usuario');
 					<th id=\"idUsuario\">id</th>
 					<th id=\"login\">Login</th>
 					<th id=\"nome\">Nome</th>
-					<th id=\"senha\">Senha</th>
-					<th id=\"senha\">Alterar</th>
 					<th id=\"senha\">Excluir</th>
 				</tr>
 			</thead>";
@@ -76,9 +51,7 @@ $exib=$conn->prepare('SELECT * FROM usuario');
 				echo "<td>".$row['idusuario']."</td>";
 				echo "<td>".$row['login']."</td>";
 				echo "<td>".$row['nome']."</td>";
-				echo "<td>".$row['senha']."</td>";
-				echo "<td><a href=\"index.php?alterar&id=".$row['idusuario']."\">Alterar</a></td>";
-				echo "<td><a href=\"index.php?excluir&id=".$row['idusuario']."\">Excluir</a></td>";
+				echo "<td><a href=\"cadastraUsuario.php?excluir&id=".$row['idusuario']."\">Excluir</a></td>";
 			echo "</tbody>
 				</tr>";
 		}

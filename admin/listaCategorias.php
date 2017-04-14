@@ -20,36 +20,7 @@
 	<input class="btn btn-primary" type="submit" value="Gravar" name="grava"/>
 </form>
 </br>
-<?php
-if(isset($_POST['grava'])){
-	$descricao=$_POST['descricao'];
-	//Preparar o SQL
-	$prep_grava=$conn->prepare('INSERT INTO `categoria` 
-	(`descricao`) VALUES 
-	(:pdesricao);');
-	$prep_grava->bindValue(':pdesricao',$descricao);
-	$prep_grava->execute();
-	if ($prep_grava){
-		echo "<script>alert('Cadastro de Categoria Realizado!');
-			document.location='../admin/painel.php?id=#listaCategoria';
-			$(document).ready(function () { $('#listaCategoria').trigger('click'); });
-			
-		</script>";
-	}
-}
-if(isset($_GET['excluir'])){
-	$id=$_GET['id'];
-	echo "Deseja realmente excluir?";
-	echo "<br/><a href=\"index.php?excluirvdd&id=".$id."\">Sim</a> <a href=\"index.php\">Não</a>";
-}
-if(isset($_GET['excluirvdd'])){
-	$id=$_GET['id'];
-	$excluir=$conn->prepare('DELETE FROM `cadastro` WHERE `cadastro`.`id_cad` = :pid');
-	$excluir->bindValue(':pid',$id);
-	$excluir->execute();
-	echo "Excluído com Sucesso";
-}
-?>	
+	
 <?php
 $exib=$conn->prepare('SELECT * FROM categoria');
 	$exib->execute();
@@ -61,7 +32,6 @@ $exib=$conn->prepare('SELECT * FROM categoria');
 				<tr>
 					<th id=\"idcategoria\">id</th>
 					<th id=\"descricao\">Categoria</th>
-					<th id=\"Alterar\">Alterar</th>
 					<th id=\"Excluir\">Excluir</th>
 				</tr>
 			</thead>";
@@ -70,12 +40,10 @@ $exib=$conn->prepare('SELECT * FROM categoria');
 				<tr>";
 				echo "<td>".$row['idcategoria']."</td>";
 				echo "<td>".$row['descricao']."</td>";
-				echo "<td><a href=\"index.php?alterar&id=".$row['idcategoria']."\">Alterar</a></td>";
-				echo "<td><a href=\"index.php?excluir&id=".$row['idcategoria']."\">Excluir</a></td>";
+				echo "<td><a href=\"cadastraCategoria.php?excluir&id=".$row['idcategoria']."\">Excluir</a></td>";
 			echo "</tbody>
 				</tr>";
 		}
 	}
-
 $conn = null;
 ?>
