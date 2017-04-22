@@ -26,7 +26,7 @@
 				</div>
   				<label for="example-text-input" class="col-2 col-form-label">Descrição Curso</label>
 				<div class="col-2">
-					<textarea class="form-control" name="descricaocurso" rows="3"><?php echo $row_alt['descricaocurso']; ?></textarea>
+					<textarea class="form-control" name="descricaocurso" rows="5"><?php echo $row_alt['descricaocurso']; ?></textarea>
 				</div>
 				<div class="form-group">
 	    			<label for="exampleSelect1">Categoria: </label>
@@ -71,7 +71,7 @@
 				</div>
   				<label for="descricaocurso" class="col-2 col-form-label">Descrição Curso</label>
 				<div class="col-2">
-					<textarea class="form-control" name="descricaocurso" rows="3"></textarea>
+					<textarea class="form-control" name="descricaocurso" rows="5"></textarea>
 				</div>
 				<div class="form-group">
 	    			<label for="slctcategoria">Categoria: </label>

@@ -23,39 +23,10 @@
     ?>
 	
 	<div class="container theme-showcase" role="main">
-		<div class="page-header">
-			<h1>Usuários</h1>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Inscrição</th>
-							<th>Nome</th>
-							<th>Situação</th>
-							<th>Nivel de acesso</th>
-							<th>Cadastrado</th>
-							<th>Ações</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>Cesar Szpak</td>
-							<td>Ativo</td>
-							<td>Administrador</td>
-							<td>10/10/1980 10:15:20</td>
-							<td>
-								<button type="button" class="btn btn-xs btn-success">Visualizar</button>
-								<button type="button" class="btn btn-xs btn-warning">Editar</button>
-								<button type="button" class="btn btn-xs btn-danger">Apagar</button>
-							</td>
-						</tr>              
-					</tbody>
-				</table>
-			</div>
-		</div>
+		<?php
+		require_once("listaContatos.php");
+		?>
+		
 	</div>
     <?php
 		require_once("scripts.php");
