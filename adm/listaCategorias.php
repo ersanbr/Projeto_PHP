@@ -105,11 +105,9 @@ if(isset($_POST['grava'])){
 	}	
 }
 if(isset($_POST['alterar'])){
-	$idcategoria=$_POST['id'];
-	$descricao=$_POST['descricao'];
-	$prep_alt=$conn->prepare('UPDATE `categoria` SET 
-	`descricao` = :pdescricao, 
-	WHERE `categoria`.`idcategoria` = :pidcategoria;');
+	$idcategoria=$_POST['idcategoria'];
+	$descricao=$_POST['categoria'];
+	$prep_alt=$conn->prepare('UPDATE `categoria` SET  `descricao` = :pdescricao WHERE `categoria`.`idcategoria` = :pidcategoria');
 	$prep_alt->bindValue(':pdescricao',$descricao);
 	$prep_alt->bindValue(':pidcategoria',$idcategoria);
 	$prep_alt->execute();

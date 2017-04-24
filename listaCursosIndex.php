@@ -1,14 +1,7 @@
 <?php
-	require_once "config.php";
+	require_once("adm/conexao/conexao.php");
 	$id=$_GET['id'];
 
-if($id){
-	
-	if ($id) {
-		$sql = "SELECT cur.idcurso,cur.nomecurso,cur.descricaocurso,cat.descricao,cur.imagemcurso FROM curso cur LEFT JOIN categoria cat ON cur.categoriaid=cat.idcategoria WHERE cat.idcategoria=".$id.";";
-	} else{
-		$sql = "SELECT cur.idcurso,cur.nomecurso,cur.descricaocurso,cat.descricao,cur.imagemcurso FROM curso cur LEFT JOIN categoria cat ON cur.categoriaid=cat.idcategoria;";
-	}
 	$exib=$conn->prepare('SELECT cur.idcurso,cur.nomecurso,cur.descricaocurso,cat.descricao,cur.imagemcurso FROM curso cur LEFT JOIN categoria cat ON cur.categoriaid=cat.idcategoria WHERE cat.idcategoria=:pid');
 	$exib->bindValue(':pid',$id);
 	$exib->execute();
@@ -33,7 +26,6 @@ if($id){
 				</tr>";
 		}
 	}
-}
 
 $conn = null;
 ?>
